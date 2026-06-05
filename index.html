@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Mystery Shopper Programme | MBG × Jollibee UAE 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#1d2d6e;--navy2:#253580;--navy3:#121e4a;
+  --gold:#c8922a;--gold2:#e8a82f;--gold3:#f5c550;
+  --white:#fff;--bg:#f7f9fc;--bg2:#eef2fa;
+  --txt:#1a1e3a;--txt2:#4a5578;--txt3:#8892a4;
+  --border:#e2e8f0;--shadow:rgba(29,45,110,.10);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--navy);border-radius:2px}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;z-index:9999;background:linear-gradient(90deg,var(--navy),var(--gold2));transition:width .1s}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;width:100%;z-index:1000;height:68px;padding:0 40px;display:flex;align-items:center;justify-content:space-between;background:transparent;border-bottom:1px solid transparent;transition:background .35s,border-color .35s,box-shadow .35s}
+nav.scrolled{background:var(--navy);border-bottom-color:rgba(255,255,255,.1);box-shadow:0 2px 20px rgba(0,0,0,.25)}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-logo img{height:40px;object-fit:contain}
+.nav-divider{width:1px;height:24px;background:rgba(255,255,255,.25)}
+.nav-brand{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);letter-spacing:.4px;line-height:1.4}
+.nav-links{list-style:none;display:flex;gap:2px}
+.nav-links a{font-size:12px;font-weight:600;color:rgba(255,255,255,.7);text-decoration:none;text-transform:uppercase;letter-spacing:.5px;padding:6px 12px;border-radius:6px;transition:all .2s}
+.nav-links a:hover,.nav-links a.active{background:rgba(255,255,255,.12);color:#fff}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#fff;padding:8px 18px;border-radius:7px;font-size:12px;font-weight:700;letter-spacing:.5px;text-decoration:none;transition:all .2s}
+.nav-cta:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.2)}
+
+/* ── HERO ── */
+#hero{position:relative;min-height:78vh;display:flex;align-items:center;overflow:hidden}
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-inner{max-width:1200px;margin:0 auto;padding:100px 40px 72px;display:grid;grid-template-columns:1fr 400px;gap:60px;align-items:center;position:relative;z-index:1;width:100%}
+.hero-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(232,168,47,.15);border:1px solid rgba(232,168,47,.35);border-radius:30px;padding:5px 14px;font-size:11px;font-weight:700;color:var(--gold3);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.hero-pill span{width:6px;height:6px;background:var(--gold3);border-radius:50%;display:inline-block}
+h1.hero-title{font-size:clamp(34px,4.5vw,58px);font-weight:800;line-height:1.1;color:#fff;margin-bottom:10px}
+h1.hero-title em{color:var(--gold2);font-style:normal;display:block}
+.hero-tagline{font-size:15px;color:rgba(255,255,255,.65);margin-bottom:30px;line-height:1.7;max-width:520px}
+.hero-tagline strong{color:rgba(255,255,255,.9);font-weight:700;font-style:italic}
+.hero-stats{display:flex;gap:32px;margin-bottom:36px;flex-wrap:wrap}
+.hstat .n{font-size:34px;font-weight:800;color:var(--gold2);display:block;line-height:1}
+.hstat .l{font-size:11px;color:rgba(255,255,255,.42);letter-spacing:1px;margin-top:3px;text-transform:uppercase}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-gold{display:inline-flex;align-items:center;gap:9px;background:var(--gold2);color:var(--navy);padding:13px 28px;font-size:13px;font-weight:700;letter-spacing:.3px;text-decoration:none;border-radius:8px;transition:all .25s;border:2px solid transparent}
+.btn-gold:hover{background:transparent;color:var(--gold2);border-color:var(--gold2)}
+.btn-ghost{display:inline-flex;align-items:center;gap:9px;background:transparent;color:rgba(255,255,255,.75);padding:13px 28px;font-size:13px;font-weight:600;text-decoration:none;border-radius:8px;border:2px solid rgba(255,255,255,.2);transition:all .25s}
+.btn-ghost:hover{border-color:rgba(255,255,255,.5);color:#fff}
+.hero-card{background:rgba(255,255,255,.08);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.13);border-radius:18px;padding:28px;position:relative;overflow:hidden}
+.hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold3))}
+.hc-tag{font-size:10px;font-weight:700;color:var(--gold3);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:7px}
+.hc-tag span{width:5px;height:5px;background:var(--gold3);border-radius:50%;display:inline-block}
+.hc-title{font-size:15px;font-weight:700;color:#fff;margin-bottom:16px}
+.hc-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.hc-row:last-child{border-bottom:none}
+.hc-num{width:28px;height:28px;background:rgba(232,168,47,.18);border:1px solid rgba(232,168,47,.35);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--gold2);flex-shrink:0}
+.hc-info strong{display:block;font-size:12px;color:#fff;font-weight:600;margin-bottom:1px}
+.hc-info span{font-size:11px;color:rgba(255,255,255,.38)}
+
+/* ── CREDIBILITY BAR ── */
+.cred-bar{background:#fff;border-bottom:1px solid var(--border);padding:22px 40px}
+.cred-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.cred-item{display:flex;align-items:center;gap:11px}
+.cred-icon{width:38px;height:38px;background:var(--bg2);border-radius:9px;display:flex;align-items:center;justify-content:center;color:var(--navy);font-size:15px;flex-shrink:0}
+.cred-text strong{display:block;font-size:16px;font-weight:800;color:var(--navy);line-height:1}
+.cred-text span{font-size:11px;color:var(--txt3);letter-spacing:.3px}
+.cred-sep{width:1px;height:34px;background:var(--border)}
+
+/* ── SECTION COMMON ── */
+.sw{width:100%}
+.sw.bg-white{background:#fff}
+.sw.bg-gray{background:var(--bg)}
+.sw.bg-blue{background:var(--bg2)}
+section{padding:64px 40px;max-width:1200px;margin:0 auto}
+.sw:first-of-type section{padding-top:48px}
+.sec-hd{text-align:center;margin-bottom:44px}
+.sec-tag{display:inline-block;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;padding:4px 13px;border:1px solid rgba(200,146,42,.28);border-radius:30px;background:rgba(200,146,42,.06)}
+.sec-title{font-size:clamp(24px,3vw,38px);font-weight:800;color:var(--navy);margin-bottom:10px;line-height:1.2}
+.sec-title span{color:var(--gold)}
+.sec-desc{font-size:15px;color:var(--txt2);line-height:1.75;max-width:600px;margin:0 auto}
+.sec-rule{width:44px;height:3px;background:linear-gradient(90deg,var(--navy),var(--gold));border-radius:2px;margin:12px auto 0}
+
+/* ── REVEAL ANIMATIONS ── */
+.rev{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
+.rev.vis{opacity:1;transform:none}
+.sl{opacity:0;transform:translateX(-24px);transition:opacity .65s,transform .65s}
+.sr{opacity:0;transform:translateX(24px);transition:opacity .65s,transform .65s}
+.sl.vis,.sr.vis{opacity:1;transform:none}
+.sc{opacity:0;transform:scale(.9) translateY(14px);transition:opacity .55s,transform .55s}
+.sc.vis{opacity:1;transform:none}
+
+/* ── S1: UNDERSTANDING ── */
+.target-hero{background:linear-gradient(135deg,var(--navy3),var(--navy));border-radius:18px;padding:36px;margin-bottom:38px;position:relative;overflow:hidden}
+.target-hero::after{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(232,168,47,.13),transparent)}
+.th-badge{font-size:10px;font-weight:700;color:var(--gold2);letter-spacing:2px;text-transform:uppercase;border:1px solid rgba(232,168,47,.35);border-radius:30px;display:inline-block;padding:4px 14px;margin-bottom:16px}
+.th-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:22px}
+.th-stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:18px;text-align:center;transition:all .3s;cursor:default}
+.th-stat:hover{background:rgba(232,168,47,.12);border-color:rgba(232,168,47,.35);transform:translateY(-4px)}
+.th-n{font-size:40px;font-weight:800;color:var(--gold2);display:block;line-height:1}
+.th-l{font-size:11px;color:rgba(255,255,255,.43);letter-spacing:1.5px;margin-top:5px;text-transform:uppercase}
+.th-desc{font-size:14px;line-height:1.85;color:rgba(255,255,255,.68);border-left:3px solid var(--gold);padding-left:16px}
+.th-desc strong{color:#fff}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.panel{background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px;box-shadow:0 2px 12px var(--shadow)}
+.p-title{font-size:11px;font-weight:700;color:var(--navy);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--bg2);display:flex;align-items:center;gap:8px}
+.p-title i{color:var(--gold)}
+.pi{display:flex;align-items:flex-start;gap:10px;padding:10px;margin-bottom:6px;background:var(--bg);border-radius:8px;border:1px solid transparent;transition:all .25s}
+.pi:hover{border-color:var(--border);background:#fff;box-shadow:0 3px 10px var(--shadow)}
+.pio{width:32px;height:32px;border-radius:7px;flex-shrink:0;background:linear-gradient(135deg,var(--navy),var(--navy2));display:flex;align-items:center;justify-content:center;font-size:14px}
+.pio.g{background:linear-gradient(135deg,var(--gold),var(--gold2))}
+.pit{font-size:13px;line-height:1.6;color:var(--txt2)}
+.score-panel{background:#fff;border:1px solid var(--border);border-radius:14px;padding:28px;box-shadow:0 2px 12px var(--shadow);margin-top:38px}
+.sp-ttl{font-size:11px;font-weight:700;color:var(--navy);letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:22px;display:flex;align-items:center;justify-content:center;gap:12px}
+.sp-ttl::before,.sp-ttl::after{content:'';flex:1;height:1px;background:var(--border)}
+.srow{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.srl{font-size:12px;font-weight:600;color:var(--txt2);width:168px;flex-shrink:0}
+.srw{flex:1;height:6px;background:var(--bg2);border-radius:3px;overflow:hidden}
+.srf{height:100%;border-radius:3px;width:0;transition:width 1.5s cubic-bezier(.175,.885,.32,1.275)}
+.srv{font-size:11px;font-weight:700;color:var(--navy);width:32px;text-align:right;flex-shrink:0}
+
+/* ── S2: APPROACH ── */
+.pillars{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:52px}
+.pill{background:#fff;border:1px solid var(--border);border-radius:14px;padding:20px 14px;text-align:center;position:relative;overflow:hidden;transition:all .35s;box-shadow:0 2px 8px var(--shadow);cursor:default}
+.pill::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--navy),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.pill:hover::before{transform:scaleX(1)}
+.pill:hover{transform:translateY(-8px);box-shadow:0 16px 32px var(--shadow);border-color:rgba(29,45,110,.18)}
+.pnum{font-size:10px;font-weight:700;color:var(--txt3);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.pring{width:52px;height:52px;margin:0 auto 12px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;background:var(--bg2);border:2px solid var(--border);transition:all .35s}
+.pill:hover .pring{background:var(--navy);border-color:var(--navy)}
+.ptitle{font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;line-height:1.35;margin-bottom:10px}
+.plist{list-style:none;text-align:left}
+.plist li{font-size:11px;color:var(--txt3);padding:2px 0 2px 10px;position:relative;line-height:1.5}
+.plist li::before{content:'›';position:absolute;left:0;color:var(--navy);font-weight:700}
+.proc-wrap{background:linear-gradient(135deg,var(--navy3),var(--navy));border-radius:18px;padding:40px}
+.proc-ttl{font-size:11px;font-weight:700;color:var(--gold2);letter-spacing:4px;text-transform:uppercase;text-align:center;margin-bottom:38px}
+.procflow{display:flex;align-items:center;justify-content:center}
+.pstep{display:flex;flex-direction:column;align-items:center;gap:10px}
+.pcirc{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.07);border:2px solid rgba(255,255,255,.15);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;transition:all .3s;cursor:default}
+.pcirc:hover{background:var(--gold);border-color:var(--gold);transform:scale(1.08)}
+.pico{font-size:22px}
+.pn{font-size:9px;font-weight:600;color:rgba(255,255,255,.38);text-transform:uppercase}
+.plbl{font-size:11px;font-weight:600;letter-spacing:.8px;color:rgba(255,255,255,.5);text-transform:uppercase;text-align:center;max-width:80px}
+.pconn{flex:1;height:1px;background:rgba(255,255,255,.14);margin-bottom:30px;min-width:28px;max-width:60px;position:relative}
+.pconn::after{content:'›';position:absolute;right:-6px;top:-8px;color:rgba(232,168,47,.45);font-size:14px}
+
+/* ── S3: SCOPE ── */
+.scope-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.scard{background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px;position:relative;overflow:hidden;transition:all .3s;box-shadow:0 2px 8px var(--shadow)}
+.scard::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--navy),var(--gold));border-radius:3px 0 0 3px}
+.scard:hover{transform:translateY(-6px);box-shadow:0 16px 30px var(--shadow);border-color:rgba(29,45,110,.18)}
+.sc-num{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.sc-ico{font-size:26px;margin-bottom:8px;display:block}
+.sc-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:10px;line-height:1.35}
+.sc-list{list-style:none}
+.sc-list li{font-size:11.5px;color:var(--txt2);padding:3px 0 3px 10px;position:relative;line-height:1.5;border-bottom:1px solid var(--bg)}
+.sc-list li:last-child{border-bottom:none}
+.sc-list li::before{content:'›';position:absolute;left:0;color:var(--navy);font-weight:700}
+.deliv-wrap{margin-top:44px;overflow-x:auto}
+.deliv-ttl{font-size:11px;font-weight:700;color:var(--navy);letter-spacing:2.5px;text-transform:uppercase;text-align:center;margin-bottom:20px}
+.dt{width:100%;border-collapse:collapse;font-size:13px}
+.dt thead{background:linear-gradient(135deg,var(--navy3),var(--navy))}
+.dt th{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.7);padding:12px 14px;text-align:left}
+.dt td{padding:11px 14px;color:var(--txt2);border-bottom:1px solid var(--bg);font-size:13px}
+.dt tr:hover td{background:rgba(29,45,110,.02)}
+.dtb{display:inline-block;font-size:10px;font-weight:700;padding:3px 10px;border-radius:30px;letter-spacing:.4px}
+.dtb.hi{background:rgba(29,45,110,.09);color:var(--navy)}
+.dtb.md{background:rgba(200,146,42,.12);color:var(--gold)}
+.dtb.lo{background:rgba(16,185,129,.1);color:#059669}
+
+/* ── S4: CASE STUDY ── */
+.csgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:36px}
+.cscard{background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .3s;box-shadow:0 3px 14px var(--shadow)}
+.cscard:hover{transform:translateY(-5px);box-shadow:0 16px 38px var(--shadow);border-color:rgba(29,45,110,.18)}
+.cs-head{background:linear-gradient(135deg,var(--navy3),var(--navy));padding:20px 24px}
+.cs-ind{font-size:10px;font-weight:700;color:var(--gold2);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.cs-ttl{font-size:16px;font-weight:700;color:#fff;margin-bottom:4px}
+.cs-sub{font-size:12px;color:rgba(255,255,255,.5)}
+.cs-body{padding:22px 24px;display:flex;flex-direction:column;gap:14px}
+.cs-bt{font-size:10px;font-weight:700;color:var(--navy);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.cs-bt::after{content:'';flex:1;height:1px;background:var(--border)}
+.cs-bx{font-size:13px;color:var(--txt2);line-height:1.75}
+.cs-out-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:5px}
+.cs-out{background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.15);border-radius:7px;padding:8px 10px;font-size:11.5px;color:var(--txt2);line-height:1.5}
+.cs-out::before{content:'✓ ';color:#059669;font-weight:700}
+.rel-panel{background:linear-gradient(135deg,rgba(29,45,110,.04),rgba(200,146,42,.04));border:1px solid rgba(29,45,110,.1);border-radius:14px;padding:24px}
+.rel-title{font-size:11px;font-weight:700;color:var(--navy);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.rel-title::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── S5: TEAM ── */
+.leadrow{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+.lcard{background:#fff;border:1px solid var(--border);border-radius:16px;padding:24px;position:relative;overflow:hidden;transition:all .3s;box-shadow:0 3px 14px var(--shadow)}
+.lcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--navy),var(--gold))}
+.lcard:hover{transform:translateY(-4px);box-shadow:0 14px 32px var(--shadow)}
+.tmgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tmcard{background:#fff;border:1px solid var(--border);border-radius:14px;padding:20px;transition:all .3s;box-shadow:0 2px 8px var(--shadow)}
+.tmcard:hover{transform:translateY(-5px);box-shadow:0 14px 28px var(--shadow)}
+.tav{width:46px;height:46px;border-radius:50%;margin-bottom:12px;background:linear-gradient(135deg,var(--navy),var(--navy2));display:flex;align-items:center;justify-content:center;font-size:20px}
+.trole{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px}
+.tname{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.ttitle{font-size:12px;color:var(--txt2);margin-bottom:10px;font-weight:500}
+.tbio{font-size:12px;color:var(--txt2);line-height:1.7}
+.ttags{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}
+.ttag{font-size:10px;color:var(--navy);background:var(--bg2);border:1px solid var(--border);border-radius:30px;padding:3px 8px;font-weight:600;transition:all .2s}
+.ttag:hover{background:var(--navy);color:#fff}
+.eng-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:32px}
+.eg{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px 14px;text-align:center;transition:all .25s;box-shadow:0 2px 8px var(--shadow)}
+.eg:hover{transform:translateY(-4px);box-shadow:0 10px 22px var(--shadow)}
+.eg-ico{font-size:24px;margin-bottom:10px}
+.eg-ttl{font-size:11px;font-weight:700;color:var(--navy);letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px}
+.eg-txt{font-size:12px;color:var(--txt2);line-height:1.6}
+
+/* ── FOOTER ── */
+footer{background:linear-gradient(135deg,var(--navy3),var(--navy));padding:48px 40px;text-align:center}
+.ft-row{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:8px}
+.ft-row img{height:38px;object-fit:contain;opacity:.95}
+.ft-div{width:1px;height:24px;background:rgba(255,255,255,.2)}
+.ft-brand{font-size:18px;font-weight:800;color:#fff}
+.ft-tag{font-size:11px;color:rgba(255,255,255,.38);letter-spacing:2px;text-transform:uppercase;margin-bottom:22px;display:block}
+.ft-links{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin-bottom:26px}
+.ftl{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.58);text-decoration:none;transition:color .2s}
+.ftl:hover{color:var(--gold2)}
+.ftl i{color:var(--gold2)}
+.ft-copy{font-size:10px;color:rgba(255,255,255,.5);letter-spacing:1.5px;text-transform:uppercase}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  nav{padding:0 16px}
+  .nav-links{display:none}
+  .hero-inner{grid-template-columns:1fr;padding:90px 16px 60px}
+  .hero-card{display:none}
+  #hero{min-height:auto}
+  .cred-inner{gap:14px}.cred-sep{display:none}
+  section{padding:48px 16px}
+  .sw:first-of-type section{padding-top:32px}
+  .th-grid,.two-col,.pillars,.scope-grid,.csgrid,.leadrow,.tmgrid,.eng-grid{grid-template-columns:1fr}
+  .cs-out-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="mbg-logo.png" alt="MBG Corporate Services" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<span style=\'font-size:20px;font-weight:800;color:var(--navy)\'>MBG</span>')"/>
+    <div class="nav-divider"></div>
+    <div class="nav-brand">MYSTERY SHOPPER<br/>PROGRAMME 2026</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#s1">Understanding</a></li>
+    <li><a href="#s2">Approach</a></li>
+    <li><a href="#s3">Scope</a></li>
+    <li><a href="#s4">Case Study</a></li>
+    <li><a href="#s5">Team</a></li>
+  </ul>
+  <a href="mailto:uae@mbgcorp.com" class="nav-cta"><i class="fas fa-envelope"></i>Get in Touch</a>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-pill"><span></span>CONFIDENTIAL PROPOSAL — UAE 2026</div>
+      <h1 class="hero-title">Mystery Shopping<em>Excellence Programme</em></h1>
+      <p class="hero-tagline"><strong>"You Cannot Improve What You Don't Measure."</strong><br/>Precision mystery shopping across all 29 Jollibee UAE outlets — evaluating every customer touchpoint from entrance to complaint resolution.</p>
+      <div class="hero-stats">
+        <div class="hstat"><span class="n counter" data-t="29">0</span><div class="l">UAE Outlets</div></div>
+        <div class="hstat"><span class="n counter" data-t="10">0</span><div class="l">Audit Areas</div></div>
+        <div class="hstat"><span class="n counter" data-t="5">0</span><div class="l">Deliverables</div></div>
+        <div class="hstat"><span class="n counter" data-t="6">0</span><div class="l">Dedicated Staff</div></div>
+      </div>
+      <div class="hero-btns">
+        <a href="#s1" class="btn-gold"><i class="fas fa-file-alt"></i>View Proposal</a>
+        <a href="mailto:uae@mbgcorp.com" class="btn-ghost"><i class="fas fa-envelope"></i>Contact MBG</a>
+      </div>
+    </div>
+    <div>
+      <div class="hero-card">
+        <div class="hc-tag"><span></span>MISSION DELIVERABLES</div>
+        <div class="hc-title">5-Section Proposal</div>
+        <div class="hc-row"><div class="hc-num">01</div><div class="hc-info"><strong>Our Understanding</strong><span>Client requirements &amp; MBG role</span></div></div>
+        <div class="hc-row"><div class="hc-num">02</div><div class="hc-info"><strong>Approach &amp; Methodology</strong><span>5 pillars + operational sequence</span></div></div>
+        <div class="hc-row"><div class="hc-num">03</div><div class="hc-info"><strong>Scope of Work</strong><span>10 audit areas · 29 UAE outlets</span></div></div>
+        <div class="hc-row"><div class="hc-num">04</div><div class="hc-info"><strong>Case Studies</strong><span>QSR &amp; Retail mystery shopping</span></div></div>
+        <div class="hc-row"><div class="hc-num">05</div><div class="hc-info"><strong>Project Team</strong><span>6 dedicated professionals</span></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CREDIBILITY BAR -->
+<div class="cred-bar">
+  <div class="cred-inner">
+    <div class="cred-item">
+      <div class="cred-icon"><i class="fas fa-building"></i></div>
+      <div class="cred-text"><strong>20+ Years</strong><span>Advisory Experience</span></div>
+    </div>
+    <div class="cred-sep"></div>
+    <div class="cred-item">
+      <div class="cred-icon"><i class="fas fa-globe"></i></div>
+      <div class="cred-text"><strong>GCC Coverage</strong><span>UAE · KSA · Qatar · Oman</span></div>
+    </div>
+    <div class="cred-sep"></div>
+    <div class="cred-item">
+      <div class="cred-icon"><i class="fas fa-store"></i></div>
+      <div class="cred-text"><strong>Multi-Sector</strong><span>QSR · Retail · Banking · F&amp;B</span></div>
+    </div>
+    <div class="cred-sep"></div>
+    <div class="cred-item">
+      <div class="cred-icon"><i class="fas fa-users"></i></div>
+      <div class="cred-text"><strong>Big 4 Alumni</strong><span>Deloitte · PwC · KPMG Pedigree</span></div>
+    </div>
+    <div class="cred-sep"></div>
+    <div class="cred-item">
+      <div class="cred-icon"><i class="fas fa-shield-alt"></i></div>
+      <div class="cred-text"><strong>UAE Compliant</strong><span>Consumer Protection Standards</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- S1 — UNDERSTANDING -->
+<div class="sw bg-gray">
+<section id="s1">
+  <div class="sec-hd rev">
+    <div class="sec-tag">Section 01</div>
+    <div class="sec-title">Our <span>Understanding</span></div>
+    <p class="sec-desc">Understanding Jollibee UAE's operational landscape to deliver a precisely targeted mystery shopping programme across all 29 outlets.</p>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="target-hero rev">
+    <div class="th-badge">🍗 Target: Golden Bee Foods Restaurant LLC — Jollibee UAE</div>
+    <div class="th-grid">
+      <div class="th-stat"><span class="th-n counter" data-t="1500">0</span><div class="th-l">Global Locations</div></div>
+      <div class="th-stat"><span class="th-n counter" data-t="17">0</span><div class="th-l">Countries</div></div>
+      <div class="th-stat"><span class="th-n counter" data-t="29">0</span><div class="th-l">UAE Outlets</div></div>
+    </div>
+    <p class="th-desc">Named Thrillist's <strong>"Best International Restaurant Chain"</strong> and America's <strong>"Best Chain Fried Chicken"</strong> by Eater Magazine. World-famous for Chicken Joy, Spicy Chicken Sandwich and Peach Mango Pie. <strong>29 stores across the UAE</strong> under Golden Bee Foods Restaurant LLC — in Dubai, Abu Dhabi, Sharjah, Ajman and more.</p>
+  </div>
+  <div class="two-col" style="margin-bottom:38px">
+    <div class="panel sl">
+      <div class="p-title"><i class="fas fa-bullseye"></i>Client Requirements</div>
+      <div class="pi"><div class="pio">🎯</div><div class="pit">Evaluate customer experience consistency across all QSR outlets in the UAE</div></div>
+      <div class="pi"><div class="pio">📋</div><div class="pit">Assess compliance with brand standards, SOPs, hygiene, and service protocols</div></div>
+      <div class="pi"><div class="pio">⚡</div><div class="pit">Measure service efficiency, staff behaviour, and order accuracy</div></div>
+      <div class="pi"><div class="pio">🔍</div><div class="pit">Identify operational gaps and provide actionable improvement insights</div></div>
+    </div>
+    <div class="panel sr">
+      <div class="p-title"><i class="fas fa-shield-alt"></i>MBG's Role</div>
+      <div class="pi"><div class="pio g">🕵️</div><div class="pit">Conduct mystery shopping visits across all outlets using standardised evaluation criteria</div></div>
+      <div class="pi"><div class="pio g">📊</div><div class="pit">Assess customer journey, service quality, cleanliness, and staff performance</div></div>
+      <div class="pi"><div class="pio g">🏆</div><div class="pit">Provide outlet-wise scoring, performance analysis, and compliance findings</div></div>
+      <div class="pi"><div class="pio g">💡</div><div class="pit">Deliver actionable recommendations to improve customer satisfaction and operational excellence</div></div>
+    </div>
+  </div>
+  <div class="score-panel rev">
+    <div class="sp-ttl">Evaluation Scoring Framework</div>
+    <div class="srow"><div class="srl">Staff Appearance &amp; Grooming</div><div class="srw"><div class="srf" style="background:linear-gradient(90deg,var(--navy),var(--navy2))" data-w="15"></div></div><div class="srv">15%</div></div>
+    <div class="srow"><div class="srl">Ordering &amp; Interaction</div><div class="srw"><div class="srf" style="background:linear-gradient(90deg,var(--navy),var(--navy2))" data-w="15"></div></div><div class="srv">15%</div></div>
+    <div class="srow"><div class="srl">Service Efficiency</div><div class="srw"><div class="srf" style="background:linear-gradient(90deg,var(--gold),var(--gold2))" data-w="12"></div></div><div class="srv">12%</div></div>
+    <div class="srow"><div class="srl">Exterior &amp; Entrance</div><div class="srw"><div class="srf" style="background:linear-gradient(90deg,#0ea5e9,#0284c7)" data-w="10"></div></div><div class="srv">10%</div></div>
+    <div class="srow"><div class="srl">Food Quality</div><div class="srw"><div class="srf" style="background:linear-gradient(90deg,#0ea5e9,#0284c7)" data-w="10"></div></div><div class="srv">10%</div></div>
+    <div class="srow"><div class="srl">Cleanliness &amp; Hygiene</div><div class="srw"><div class="srf" style="background:linear-gradient(90deg,#0ea5e9,#0284c7)" data-w="10"></div></div><div class="srv">10%</div></div>
+    <div class="srow"><div class="srl">Customer Experience</div><div class="srw"><div class="srf" style="background:linear-gradient(90deg,#10b981,#059669)" data-w="10"></div></div><div class="srv">10%</div></div>
+    <div class="srow"><div class="srl">Compliance &amp; SOP</div><div class="srw"><div class="srf" style="background:linear-gradient(90deg,#f59e0b,#d97706)" data-w="6"></div></div><div class="srv">6%</div></div>
+    <div class="srow"><div class="srl">Delivery / Takeaway</div><div class="srw"><div class="srf" style="background:linear-gradient(90deg,#f59e0b,#d97706)" data-w="6"></div></div><div class="srv">6%</div></div>
+    <div class="srow"><div class="srl">Complaint Handling</div><div class="srw"><div class="srf" style="background:linear-gradient(90deg,#f59e0b,#d97706)" data-w="6"></div></div><div class="srv">6%</div></div>
+  </div>
+</section>
+</div>
+
+<!-- S2 — APPROACH -->
+<div class="sw bg-white">
+<section id="s2">
+  <div class="sec-hd rev">
+    <div class="sec-tag">Section 02</div>
+    <div class="sec-title">Approach &amp; <span>Methodology</span></div>
+    <p class="sec-desc">A customer-centric, operationally focused methodology built on 5 core pillars — evaluating every touchpoint across all 29 UAE outlets.</p>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="pillars">
+    <div class="pill sc" style="transition-delay:.00s"><div class="pnum">Pillar 01</div><div class="pring">😊</div><div class="ptitle">Customer Experience Evaluation</div><ul class="plist"><li>Assess journey entry to exit</li><li>Evaluate greeting &amp; professionalism</li><li>Measure upselling effectiveness</li><li>Review complaint handling</li></ul></div>
+    <div class="pill sc" style="transition-delay:.08s"><div class="pnum">Pillar 02</div><div class="pring">🛒</div><div class="ptitle">End-to-End Service Assessment</div><ul class="plist"><li>Dine-in, takeaway &amp; delivery</li><li>Order taking &amp; billing review</li><li>Speed &amp; queue management</li><li>Order accuracy monitoring</li></ul></div>
+    <div class="pill sc" style="transition-delay:.16s"><div class="pnum">Pillar 03</div><div class="pring">🛡️</div><div class="ptitle">Brand Standards &amp; Compliance</div><ul class="plist"><li>SOP &amp; operational guidelines</li><li>Hygiene &amp; food safety review</li><li>Food presentation evaluation</li><li>Non-compliance identification</li></ul></div>
+    <div class="pill sc" style="transition-delay:.24s"><div class="pnum">Pillar 04</div><div class="pring">📈</div><div class="ptitle">Data-Driven Performance Analysis</div><ul class="plist"><li>Standardised scoring models</li><li>Benchmark vs. KPIs</li><li>Trend &amp; issue identification</li><li>Outlet-wise comparison</li></ul></div>
+    <div class="pill sc" style="transition-delay:.32s"><div class="pnum">Pillar 05</div><div class="pring">📋</div><div class="ptitle">Reporting &amp; Improvement</div><ul class="plist"><li>Detailed reports &amp; recommendations</li><li>Training needs highlighted</li><li>Management support insights</li><li>Continuous monitoring enabled</li></ul></div>
+  </div>
+  <div class="proc-wrap rev">
+    <div class="proc-ttl">Operational Sequence</div>
+    <div class="procflow">
+      <div class="pstep"><div class="pcirc"><div class="pico">⚙️</div><div class="pn">01</div></div><div class="plbl">Preparation</div></div>
+      <div class="pconn"></div>
+      <div class="pstep"><div class="pcirc"><div class="pico">🚀</div><div class="pn">02</div></div><div class="plbl">Deployment</div></div>
+      <div class="pconn"></div>
+      <div class="pstep"><div class="pcirc"><div class="pico">📡</div><div class="pn">03</div></div><div class="plbl">Data Collection</div></div>
+      <div class="pconn"></div>
+      <div class="pstep"><div class="pcirc"><div class="pico">🔬</div><div class="pn">04</div></div><div class="plbl">Analysis</div></div>
+      <div class="pconn"></div>
+      <div class="pstep"><div class="pcirc"><div class="pico">📊</div><div class="pn">05</div></div><div class="plbl">Reporting</div></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- S3 — SCOPE -->
+<div class="sw bg-gray">
+<section id="s3">
+  <div class="sec-hd rev">
+    <div class="sec-tag">Section 03</div>
+    <div class="sec-title">Scope of <span>Work</span></div>
+    <p class="sec-desc">Comprehensive mystery shopping audit across 10 key evaluation areas — covering every customer touchpoint from entrance to complaint resolution at all 29 UAE outlets.</p>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="scope-grid">
+    <div class="scard sc" style="transition-delay:.00s"><div class="sc-num">Audit Area 01</div><span class="sc-ico">🏢</span><div class="sc-title">Exterior &amp; Entrance Evaluation</div><ul class="sc-list"><li>Signage visibility &amp; illumination</li><li>Cleanliness of entrance &amp; surrounds</li><li>Parking &amp; accessibility facilities</li><li>Promotional materials &amp; branding</li><li>Customer welcome upon entering</li></ul></div>
+    <div class="scard sc" style="transition-delay:.06s"><div class="sc-num">Audit Area 02</div><span class="sc-ico">👔</span><div class="sc-title">Staff Appearance, Grooming &amp; Professionalism</div><ul class="sc-list"><li>Grooming, hygiene &amp; uniform compliance</li><li>Professionalism, courtesy &amp; body language</li><li>Positive communication &amp; willingness to assist</li><li>Attentiveness &amp; responsiveness</li></ul></div>
+    <div class="scard sc" style="transition-delay:.12s"><div class="sc-num">Audit Area 03</div><span class="sc-ico">🗣️</span><div class="sc-title">Ordering &amp; Customer Interaction</div><ul class="sc-list"><li>Waiting time before order placement</li><li>Staff knowledge of menu &amp; promotions</li><li>Upselling &amp; cross-selling techniques</li><li>Order-taking accuracy &amp; clarity</li><li>Handling of special instructions</li></ul></div>
+    <div class="scard sc" style="transition-delay:.18s"><div class="sc-num">Audit Area 04</div><span class="sc-ico">⚡</span><div class="sc-title">Service Efficiency &amp; Operations</div><ul class="sc-list"><li>Speed of service — order to delivery</li><li>Queue management during busy periods</li><li>Billing &amp; payment accuracy</li><li>Staff coordination during operations</li><li>Consistency across all touchpoints</li></ul></div>
+    <div class="scard sc" style="transition-delay:.24s"><div class="sc-num">Audit Area 05</div><span class="sc-ico">🍗</span><div class="sc-title">Food Quality &amp; Presentation</div><ul class="sc-list"><li>Freshness, taste &amp; temperature</li><li>Presentation, portion &amp; packaging</li><li>Consistency with menu descriptions</li><li>Takeaway / delivery packaging standards</li><li>Brand food presentation compliance</li></ul></div>
+    <div class="scard sc" style="transition-delay:.30s"><div class="sc-num">Audit Area 06</div><span class="sc-ico">🧹</span><div class="sc-title">Cleanliness &amp; Hygiene Standards</div><ul class="sc-list"><li>Dining tables, seating, counters &amp; floors</li><li>Washroom cleanliness &amp; hygiene supplies</li><li>Staff food safety compliance</li><li>Regular cleaning during operations</li><li>Visible food prep area hygiene</li></ul></div>
+    <div class="scard sc" style="transition-delay:.36s"><div class="sc-num">Audit Area 07</div><span class="sc-ico">😃</span><div class="sc-title">Customer Experience Assessment</div><ul class="sc-list"><li>Overall ambiance, lighting &amp; comfort</li><li>Customer satisfaction throughout</li><li>Complaint &amp; concern handling</li><li>Staff professionalism throughout</li><li>Likelihood of repeat visits</li></ul></div>
+    <div class="scard sc" style="transition-delay:.42s"><div class="sc-num">Audit Area 08</div><span class="sc-ico">📋</span><div class="sc-title">Compliance &amp; SOP Adherence</div><ul class="sc-list"><li>SOP &amp; guideline compliance</li><li>Health, safety &amp; hygiene regulations</li><li>Promotional campaigns communicated correctly</li><li>Service delivery consistency</li><li>Identification of operational gaps</li></ul></div>
+    <div class="scard sc" style="transition-delay:.48s"><div class="sc-num">Audit Area 09</div><span class="sc-ico">🛵</span><div class="sc-title">Delivery / Takeaway Evaluation</div><ul class="sc-list"><li>Accuracy &amp; completeness of orders</li><li>Packaging quality, sealing &amp; labelling</li><li>Delivery timelines &amp; responsiveness</li><li>Professionalism of delivery personnel</li><li>Food quality &amp; temperature on delivery</li></ul></div>
+    <div class="scard sc" style="transition-delay:.54s"><div class="sc-num">Audit Area 10</div><span class="sc-ico">🤝</span><div class="sc-title">Customer Complaint Handling</div><ul class="sc-list"><li>Promptness in acknowledging complaints</li><li>Empathy, tone &amp; clarity during interaction</li><li>Proper complaint-handling procedures</li><li>Resolution efficiency &amp; timeliness</li><li>Escalation to supervisors when needed</li></ul></div>
+    <div class="scard sc" style="transition-delay:.60s;grid-column:span 2"><div class="sc-num">Deliverable</div><span class="sc-ico">📊</span><div class="sc-title">Reporting &amp; Improvement Recommendations</div><ul class="sc-list" style="columns:2;gap:20px"><li>Outlet-wise performance ratings &amp; scoring summaries</li><li>Key observations, gaps &amp; compliance findings</li><li>Photographic evidence where applicable</li><li>Training needs &amp; service improvement areas</li><li>Actionable recommendations for efficiency improvement</li><li>Industry benchmarking &amp; best practice alignment</li></ul></div>
+  </div>
+  <div class="deliv-wrap rev">
+    <div class="deliv-ttl">Scoring Matrix — 29 UAE Outlets</div>
+    <table class="dt">
+      <thead><tr><th>Audit Area</th><th>Score Weight</th><th>Scale</th><th>Priority</th></tr></thead>
+      <tbody>
+        <tr><td>Staff Appearance, Grooming &amp; Professionalism</td><td>15%</td><td>1–5</td><td><span class="dtb hi">HIGH</span></td></tr>
+        <tr><td>Ordering &amp; Customer Interaction</td><td>15%</td><td>1–5</td><td><span class="dtb hi">HIGH</span></td></tr>
+        <tr><td>Service Efficiency &amp; Operations</td><td>12%</td><td>1–5</td><td><span class="dtb hi">HIGH</span></td></tr>
+        <tr><td>Exterior &amp; Entrance Evaluation</td><td>10%</td><td>1–5</td><td><span class="dtb md">MED</span></td></tr>
+        <tr><td>Food Quality &amp; Presentation</td><td>10%</td><td>1–5</td><td><span class="dtb md">MED</span></td></tr>
+        <tr><td>Cleanliness &amp; Hygiene Standards</td><td>10%</td><td>1–5</td><td><span class="dtb md">MED</span></td></tr>
+        <tr><td>Customer Experience Assessment</td><td>10%</td><td>1–5</td><td><span class="dtb md">MED</span></td></tr>
+        <tr><td>Compliance &amp; SOP Adherence</td><td>6%</td><td>1–5</td><td><span class="dtb lo">TRACK</span></td></tr>
+        <tr><td>Delivery / Takeaway Evaluation</td><td>6%</td><td>1–5</td><td><span class="dtb lo">TRACK</span></td></tr>
+        <tr><td>Customer Complaint Handling</td><td>6%</td><td>1–5</td><td><span class="dtb lo">TRACK</span></td></tr>
+        <tr style="font-weight:700;background:rgba(29,45,110,.03)"><td><strong>Total</strong></td><td><strong>100%</strong></td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+</div>
+
+<!-- S4 — CASE STUDY -->
+<div class="sw bg-white">
+<section id="s4">
+  <div class="sec-hd rev">
+    <div class="sec-tag">Section 04</div>
+    <div class="sec-title">Case <span>Study</span></div>
+    <p class="sec-desc">Proven mystery shopping track record across UAE retail and QSR sectors — directly relevant to the Jollibee engagement.</p>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="csgrid">
+    <div class="cscard rev" style="transition-delay:.08s">
+      <div class="cs-head">
+        <div class="cs-ind">🏪 Hypermarkets — Cooperative Society · UAE</div>
+        <div class="cs-ttl">Retail Compliance Mission</div>
+        <div class="cs-sub">Mystery Shopping · Consumer Protection Standards</div>
+      </div>
+      <div class="cs-body">
+        <div><div class="cs-bt">Client Challenge</div><div class="cs-bx">Cooperative societies needed to meet UAE standards across Safety, Cleanliness, Promotions, Pricing, Product Knowledge and Consumer Data Protection — ensuring all transactions met transparency and complaint management standards.</div></div>
+        <div><div class="cs-bt">MBG Approach</div><div class="cs-bx">Deployed trained professionals posing as regular customers. Developed detailed evaluation checklists based on best practices. Shoppers conducted interactions across various scenarios, recording compliance observations focused on UAE regulatory standards.</div></div>
+        <div><div class="cs-bt">Key Outcomes</div>
+          <div class="cs-out-grid">
+            <div class="cs-out">Clear understanding of compliance levels with consumer protection standards</div>
+            <div class="cs-out">Specific service gaps identified affecting customer experience</div>
+            <div class="cs-out">Strengthened internal controls &amp; risk management frameworks</div>
+            <div class="cs-out">Long-term operational resilience supported</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cscard rev" style="transition-delay:.16s">
+      <div class="cs-head">
+        <div class="cs-ind">🍔 Quick Service Restaurants · Multi-Branch UAE</div>
+        <div class="cs-ttl">QSR Service Excellence Mission</div>
+        <div class="cs-sub">Mystery Shopping · Product Knowledge &amp; Service Quality</div>
+      </div>
+      <div class="cs-body">
+        <div><div class="cs-bt">Client Challenge</div><div class="cs-bx">Client sought to ensure employees were well-trained in product knowledge and exceptional service. Assessed whether customers consistently received clear, accurate product information and whether interactions met high standards of professionalism.</div></div>
+        <div><div class="cs-bt">MBG Approach</div><div class="cs-bx">Deployed mystery shoppers briefed on specific product knowledge scenarios. Developed a customised evaluation framework measuring product knowledge, communication clarity, professionalism, responsiveness and ethical cross-selling across multiple branches.</div></div>
+        <div><div class="cs-bt">Key Outcomes</div>
+          <div class="cs-out-grid">
+            <div class="cs-out">Knowledge gaps revealed among frontline staff in key product areas</div>
+            <div class="cs-out">Unclear communication and T&amp;C explanation instances identified</div>
+            <div class="cs-out">Responsiveness &amp; professionalism gaps highlighted</div>
+            <div class="cs-out">Proactive staff training programme enabled</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rel-panel rev">
+    <div class="rel-title"><i class="fas fa-link" style="color:var(--gold)"></i>Direct Relevance to Jollibee UAE</div>
+    <div class="two-col" style="gap:14px">
+      <div>
+        <div class="pi"><div class="pio g">🔗</div><div class="pit"><strong>Direct QSR Experience</strong> — Case Study 2 mirrors this exact engagement: multi-branch QSR evaluation covering service standards, product knowledge and customer experience across UAE outlets</div></div>
+        <div class="pi"><div class="pio g">🛡️</div><div class="pit"><strong>UAE Regulatory Alignment</strong> — Our methodology is built around UAE consumer protection regulations, ensuring findings are compliant and actionable</div></div>
+      </div>
+      <div>
+        <div class="pi"><div class="pio">📊</div><div class="pit"><strong>Proven Scoring Framework</strong> — Standardised checklist and scoring model used in prior engagements, customised for Jollibee's 29 outlet network</div></div>
+        <div class="pi"><div class="pio">🍟</div><div class="pit"><strong>QSR Institutional Knowledge</strong> — Our Senior Manager directly standardised Capex review processes for global QSR chains at Deloitte — directly applicable here</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- S5 — TEAM -->
+<div class="sw bg-gray">
+<section id="s5">
+  <div class="sec-hd rev">
+    <div class="sec-tag">Section 05</div>
+    <div class="sec-title">Project <span>Team</span></div>
+    <p class="sec-desc">An experienced, cross-functional team assembled with deep understanding of Jollibee's operational landscape and UAE market requirements.</p>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="leadrow">
+    <div class="lcard rev" style="transition-delay:.00s">
+      <div class="tav">👨‍💼</div>
+      <div class="trole">Leadership — CEO</div>
+      <div class="tname">Naresh Manchanda</div>
+      <div class="ttitle">CEO, Global Risk &amp; Digitalization Advisory Services</div>
+      <div class="tbio">20+ years leading Risk Advisory, M&amp;A, Business Advisory and Legal Practice across Europe, Middle East, Africa &amp; Asia. Former Senior Financial Controller at General Electric (~20 years) covering 22 countries and 30+ legal entities. Deep expertise in cross-border compliance, taxes, finance and risk management. Serves on executive committees and compliance boards globally.</div>
+      <div class="ttags"><span class="ttag">Risk Advisory</span><span class="ttag">M&amp;A</span><span class="ttag">GE 20 Yrs</span><span class="ttag">Cross-Border</span><span class="ttag">UAE CEO</span><span class="ttag">EMEA</span></div>
+    </div>
+    <div class="lcard rev" style="transition-delay:.08s">
+      <div class="tav">👩‍💼</div>
+      <div class="trole">Client Relationship Partner</div>
+      <div class="tname">Lydia Wummel-Tyagi</div>
+      <div class="ttitle">Partner, European Enterprise Team &amp; Marketing</div>
+      <div class="tbio">10+ years in business development and project management for major oil &amp; gas companies and government entities. Led teams of 50+ professionals for ADNOC Group entities, GDI and Emarat. Treasurer of German Emirate Business in Qatar. Member of Indo-German Young Leaders Forum. Fluent in German &amp; English — strong cross-cultural expertise.</div>
+      <div class="ttags"><span class="ttag">O&amp;G Advisory</span><span class="ttag">ADNOC</span><span class="ttag">Business Dev</span><span class="ttag">German·English</span><span class="ttag">Qatar</span><span class="ttag">50+ Teams</span></div>
+    </div>
+  </div>
+  <div class="tmgrid">
+    <div class="tmcard sc" style="transition-delay:.00s">
+      <div class="tav">👨‍💼</div>
+      <div class="trole">Client Relationship Partner</div>
+      <div class="tname">Nadim Khan</div>
+      <div class="ttitle">Associate Partner, Risk Advisory Services</div>
+      <div class="tbio">19+ years in management consulting and risk advisory across UAE, Oman, Qatar &amp; India. Leads delivery of risk management solutions, internal control frameworks and compliance advisory spanning banking, insurance, oil &amp; gas, healthcare and hospitality. Key role expanding MBG's Risk Advisory practice across the GCC.</div>
+      <div class="ttags"><span class="ttag">ERM</span><span class="ttag">Internal Controls</span><span class="ttag">GCC</span><span class="ttag">MBA Finance</span><span class="ttag">19 Yrs</span></div>
+    </div>
+    <div class="tmcard sc" style="transition-delay:.10s">
+      <div class="tav">👨‍💻</div>
+      <div class="trole">Project Director</div>
+      <div class="tname">Janaki Ram</div>
+      <div class="ttitle">Associate Director, Risk Advisory Services</div>
+      <div class="tbio">Chartered Accountant with 10+ years across Big 4 firms. Specialises in enterprise risk management, internal audit, SOX/IFC and governance advisory. Led complex multi-location engagements with Boards and Audit Committees across Retail, E-commerce, FMCG, Healthcare, IT and Manufacturing sectors.</div>
+      <div class="ttags"><span class="ttag">SOX/IFC</span><span class="ttag">Internal Audit</span><span class="ttag">Big 4</span><span class="ttag">CA</span><span class="ttag">ERM</span></div>
+    </div>
+    <div class="tmcard sc" style="transition-delay:.20s">
+      <div class="tav">👩‍💻</div>
+      <div class="trole">Project Manager</div>
+      <div class="tname">Rashi Duggal</div>
+      <div class="ttitle">Senior Manager, Risk Advisory</div>
+      <div class="tbio">Chartered Accountant (~7 years, Deloitte India). Specialises in internal audits, SOX, ICFR across <strong>QSR chains</strong>, E-commerce, Oil &amp; Gas and Financial Services. <strong>Directly standardised Capex review processes for global QSR chains</strong> overseeing multiple store developments — invaluable expertise for this engagement.</div>
+      <div class="ttags"><span class="ttag">QSR Expert</span><span class="ttag">ICFR</span><span class="ttag">Deloitte</span><span class="ttag">CA India</span><span class="ttag">SOX</span></div>
+    </div>
+  </div>
+  <div class="eng-grid rev">
+    <div class="eg sc" style="transition-delay:.00s"><div class="eg-ico">👑</div><div class="eg-ttl">Leadership</div><div class="eg-txt">Partners lead core discussions, facilitate workshops and embed deep industry knowledge throughout</div></div>
+    <div class="eg sc" style="transition-delay:.08s"><div class="eg-ico">⚙️</div><div class="eg-ttl">Project Mgmt</div><div class="eg-txt">Director and Senior Manager oversee timelines, milestones and quality across all 29 outlets</div></div>
+    <div class="eg sc" style="transition-delay:.16s"><div class="eg-ico">🕵️</div><div class="eg-ttl">Execution</div><div class="eg-txt">Dedicated pool of AM/Consultants conduct all mystery shopping visits and compile field data</div></div>
+    <div class="eg sc" style="transition-delay:.24s"><div class="eg-ico">🔄</div><div class="eg-ttl">Full Lifecycle</div><div class="eg-txt">Same team stays engaged throughout for continuity and deep outlet-level understanding</div></div>
+  </div>
+</section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-row">
+    <img src="mbg-logo.png" alt="MBG" onerror="this.style.display='none';" />
+    <div class="ft-div"></div>
+    <div class="ft-brand">MBG × Jollibee</div>
+  </div>
+  <span class="ft-tag">Mystery Shopping Services — UAE 2026</span>
+  <div class="ft-links">
+    <a class="ftl" href="https://www.mbgcorp.com/ae/"><i class="fas fa-globe"></i>www.mbgcorp.com/ae</a>
+    <a class="ftl" href="mailto:uae@mbgcorp.com"><i class="fas fa-envelope"></i>uae@mbgcorp.com</a>
+    <a class="ftl" href="tel:+971526406240"><i class="fas fa-phone"></i>+971 52 640 6240</a>
+  </div>
+  <div class="ft-copy">© 2026 MBG Corporate Services. All rights reserved.</div>
+</footer>
+
+<script>
+/* ── HERO CANVAS ANIMATION ── */
+(function(){
+  const canvas=document.getElementById('hero-canvas');
+  const ctx=canvas.getContext('2d');
+  let W,H;
+
+  function resize(){
+    W=canvas.width=canvas.offsetWidth;
+    H=canvas.height=canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize',resize);
+
+  /* Particle palette: navy blues, golds, pinks, whites */
+  const COLORS=[
+    [100,160,255],[60,120,230],[180,220,255],  /* blues */
+    [245,197,80],[232,168,47],[255,210,100],   /* golds */
+    [255,120,140],[220,80,110],                /* pinks */
+    [255,255,255],[200,220,255]                /* whites */
+  ];
+
+  class Particle{
+    constructor(){this.init()}
+    init(){
+      this.x=Math.random()*W;
+      this.y=Math.random()*H;
+      this.vx=(Math.random()-.5)*.35;
+      this.vy=(Math.random()-.5)*.35;
+      this.col=COLORS[Math.floor(Math.random()*COLORS.length)];
+      const r=Math.random();
+      if(r<.45){
+        /* small square */
+        this.type='sq';
+        this.size=Math.random()*4+1.5;
+        this.alpha=Math.random()*.55+.2;
+      } else if(r<.75){
+        /* small dot */
+        this.type='dot';
+        this.size=Math.random()*2.5+.8;
+        this.alpha=Math.random()*.5+.25;
+      } else {
+        /* large bokeh circle */
+        this.type='blob';
+        this.size=Math.random()*70+25;
+        this.alpha=Math.random()*.12+.04;
+      }
+    }
+    move(){
+      this.x+=this.vx; this.y+=this.vy;
+      if(this.x<-80)this.x=W+80;
+      if(this.x>W+80)this.x=-80;
+      if(this.y<-80)this.y=H+80;
+      if(this.y>H+80)this.y=-80;
+    }
+    draw(){
+      const[r,g,b]=this.col;
+      ctx.save();
+      ctx.globalAlpha=this.alpha;
+      if(this.type==='sq'){
+        ctx.fillStyle=`rgb(${r},${g},${b})`;
+        ctx.fillRect(this.x-this.size/2,this.y-this.size/2,this.size,this.size);
+      } else if(this.type==='dot'){
+        ctx.fillStyle=`rgb(${r},${g},${b})`;
+        ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fill();
+      } else {
+        const grad=ctx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.size);
+        grad.addColorStop(0,`rgba(${r},${g},${b},.9)`);
+        grad.addColorStop(1,`rgba(${r},${g},${b},0)`);
+        ctx.fillStyle=grad;
+        ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fill();
+      }
+      ctx.restore();
+    }
+  }
+
+  const particles=Array.from({length:160},()=>new Particle());
+
+  function drawBg(){
+    const grad=ctx.createLinearGradient(0,0,W,H);
+    grad.addColorStop(0,'#1a4080');
+    grad.addColorStop(.35,'#121e4a');
+    grad.addColorStop(.7,'#1d2d6e');
+    grad.addColorStop(1,'#8a5a10');
+    ctx.fillStyle=grad;
+    ctx.fillRect(0,0,W,H);
+  }
+
+  (function loop(){
+    drawBg();
+    particles.forEach(p=>{p.move();p.draw()});
+    requestAnimationFrame(loop);
+  })();
+})();
+
+/* ── NAV: transparent → solid on scroll ── */
+const nav=document.querySelector('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>60);
+});
+
+/* ── PROGRESS BAR ── */
+window.addEventListener('scroll',()=>{
+  const p=(document.documentElement.scrollTop/(document.documentElement.scrollHeight-innerHeight))*100;
+  document.getElementById('prog').style.width=p+'%';
+});
+
+/* ── COUNTER ANIMATION ── */
+function animCtr(el){
+  if(el.dataset.done)return;
+  el.dataset.done='1';
+  const t=+el.dataset.t,t0=performance.now(),dur=1600;
+  (function tick(now){
+    const p=Math.min((now-t0)/dur,1),e=1-Math.pow(1-p,3);
+    el.textContent=Math.floor(e*t).toLocaleString();
+    if(p<1)requestAnimationFrame(tick);
+    else el.textContent=t.toLocaleString()+'+';
+  })(performance.now());
+}
+
+/* ── INTERSECTION OBSERVER ── */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(!en.isIntersecting)return;
+    en.target.classList.add('vis');
+    en.target.querySelectorAll('.counter').forEach(animCtr);
+    en.target.querySelectorAll('.srf').forEach(b=>setTimeout(()=>b.style.width=b.dataset.w+'%',300));
+  });
+},{threshold:.1});
+document.querySelectorAll('.rev,.sl,.sr,.sc').forEach(el=>obs.observe(el));
+
+/* ── NAV ACTIVE STATE ── */
+const secs=document.querySelectorAll('section[id]'),nls=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let c='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-180)c=s.id});
+  nls.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+c));
+});
+
+/* ── HERO COUNTERS ── */
+document.querySelectorAll('#hero .counter').forEach(el=>setTimeout(()=>animCtr(el),600));
+</script>
+</body>
+</html>
